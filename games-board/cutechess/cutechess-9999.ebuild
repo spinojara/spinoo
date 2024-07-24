@@ -9,15 +9,17 @@ inherit cmake
 
 DESCRIPTION="Cross-platform tools for working with chess engines"
 HOMEPAGE="https://cutechess.com/ https://github.com/cutechess/"
-EGIT_REPO_URI="https://github.com/cutechess/cutechess.git"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE="test qt5"
 
-if [[ ${PV} == *9999 ]] ; then
+if [[ ${PV} == *9999* ]] ; then
 	inherit git-r3
+	EGIT_REPO_URI="https://github.com/cutechess/cutechess.git"
+else
+	SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 fi
 
 RDEPEND="qt5? (
