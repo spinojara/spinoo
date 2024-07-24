@@ -12,7 +12,6 @@ HOMEPAGE="https://cutechess.com/ https://github.com/cutechess/"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64"
 IUSE="test qt5"
 
 if [[ ${PV} == *9999* ]] ; then
@@ -20,6 +19,7 @@ if [[ ${PV} == *9999* ]] ; then
 	EGIT_REPO_URI="https://github.com/cutechess/cutechess.git"
 else
 	SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64"
 fi
 
 RDEPEND="qt5? (
