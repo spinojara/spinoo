@@ -6,7 +6,7 @@ EAPI=8
 DESCRIPTION="fastchess is a chess cli tool to run engine vs engine matches"
 HOMEPAGE="https://github.com/Disservin/fastchess"
 
-IUSE="man"
+IUSE="man +zlib"
 
 if [[ ${PV} == *9999* ]] ; then
 	inherit git-r3
@@ -22,9 +22,17 @@ LICENSE=""
 SLOT="0"
 KEYWORDS=""
 
-DEPEND=""
+DEPEND="zlib? ( sys-libs/zlib )"
 RDEPEND="${DEPEND}"
 BDEPEND="man? ( app-text/lowdown )"
+
+src_compile() {
+	local use_zlib
+
+	use zlib && use_zlib="true"
+
+	emake ZLIB="${use_zlib}"
+}
 
 src_install() {
 	emake DESTDIR="${D}" PREFIX="/usr" install
