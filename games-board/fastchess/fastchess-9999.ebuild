@@ -6,7 +6,7 @@ EAPI=8
 DESCRIPTION="fastchess is a chess cli tool to run engine vs engine matches"
 HOMEPAGE="https://github.com/Disservin/fastchess"
 
-IUSE="man +zlib"
+IUSE="+man +zlib"
 
 if [[ ${PV} == *9999* ]] ; then
 	inherit git-r3
