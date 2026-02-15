@@ -16,7 +16,6 @@ IUSE=""
 if [[ ${PV} == *9999* ]] ; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/spinojara/${PN}.git"
-	EGIT_BRANCH="python"
 else
 	SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
@@ -35,6 +34,8 @@ BDEPEND=""
 
 python_install_all() {
 	distutils-r1_python_install_all
+	keepdir "/var/lib/bitbit/backup"
+	keepdir "/var/lib/bitbit/private"
 	newinitd "${S}/testbitd-openrc.sh" testbitd
 	newinitd "${S}/testbitn-openrc.sh" testbitn
 }
