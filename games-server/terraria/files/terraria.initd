@@ -1,0 +1,26 @@
+#!/sbin/openrc-run
+
+command_background="yes"
+pidfile="/run/terraria-server.pid"
+name="terraria-server"
+description="terraria-server"
+directory="/opt/terraria"
+command="/usr/bin/dtach"
+command_background="true"
+command_args="-N /run/terraria-server.sock /opt/terraria/TerrariaServer -r none -config /etc/terraria/server.conf"
+extra_started_commands="attach"
+
+depend() {
+	need net
+}
+
+stop() {
+	if [ -S /run/terraria-server.sock ]; then
+		/usr/bin/echo -ne "\nexit\n" | dtach -p /run/terraria-server.sock
+	fi
+}
+
+attach() {
+	einfo "ctrl + d to detach"
+	eval "${command}" -a /run/terraria-server.sock -e '^d' -r none
+}
