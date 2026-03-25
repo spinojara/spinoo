@@ -36,6 +36,6 @@ python_install_all() {
 	distutils-r1_python_install_all
 	keepdir "/var/lib/bitbit/backup"
 	keepdir "/var/lib/bitbit/private"
-	newinitd "${S}/testbitd-openrc.sh" testbitd
-	newinitd "${S}/testbitn-openrc.sh" testbitn
+	newinitd "${S}/testbitd.initd" testbitd
+	newinitd "${S}/testbitn.initd" testbitn
 }
