@@ -26,8 +26,8 @@ SLOT="0"
 KEYWORDS=""
 
 DEPEND="
-	dev-python/aiohttp
-	dev-python/docker
+	dev-python/aiohttp[${PYTHON_USEDEP}]
+	dev-python/docker[${PYTHON_USEDEP}]
 "
 RDEPEND="${DEPEND}"
 BDEPEND=""
